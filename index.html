@@ -51,9 +51,13 @@
 				<ul>
 					<ul>
 					 
-						<li><a href="/">Home</a></li>
+						<li><a href="/">主页</a></li>
 					
-						<li><a href="/archives">Archives</a></li>
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/tags">标签</a></li>
 					
 						<li><a href="/about">About</a></li>
 					
@@ -73,137 +77,41 @@
     <div id="container">
       <div id="main">
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/05/03/蚂蚁算法/" title="蚂蚁算法" itemprop="url">蚂蚁算法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="乔巴先生" target="_blank" itemprop="author">乔巴先生</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-05-03T12:09:48.000Z" itemprop="datePublished"> Published 2019-05-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/机器学习/">机器学习</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2019/05/03/蚂蚁算法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2019/05/03/蚂蚁算法/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2019/04/12/GeneticAlgorithm/" title="GeneticAlgorithm(遗传算法)" itemprop="url">GeneticAlgorithm(遗传算法)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="乔巴先生" target="_blank" itemprop="author">乔巴先生</a>
-		
-  </p><p class="article-time">
-    <time datetime="2019-04-12T13:31:21.000Z" itemprop="datePublished"> Published 2019-04-12</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>​    第一篇写遗传算法，一是因为我接触第一个算法，另外就是它的用途很广，很多方向都能用到。一般都用在解决：函数最值问题、TSP（旅行商问题）、背包问题等等。</p>
-<p>​    遗传算法完全的模拟生物的遗传过程，所以算法的核心也是可以用生物的遗传过程来理解：遗传和变异🧬，适者生存（选择优胜者）。算法的难点也是在实际业务或者使用中，如何将实际问题转化成数学模型中的模型。</p>
-<h4 id="开始第一个demo（解决TSP问题，求最短路径）："><a href="#开始第一个demo（解决TSP问题，求最短路径）：" class="headerlink" title="开始第一个demo（解决TSP问题，求最短路径）："></a>开始第一个demo（解决TSP问题，求最短路径）：</h4><p>​    以20个城市举例，找出者20个城市的最短路径。</p>
-<p>​    遗传算法在解决这个问题的时候，核心是：遗传、变异函数，这里我们采用的是，这里我们采用的是一部分基因来自父亲，一部分来自母亲，例如，father = [1, 4, 5, 2, 3], motner = [2, 4, 3, 5, 1] 则孩子可能为 [1, 4, 3, 2, 5],前半部分基因来自父亲，后半部分来自母亲，顺序都需要保持父母的。变异呢，，姿势，随机更换任意两个位置的城市为[1, 4, 1,5, 2, 3], 5, 3换位置。</p>
-<h4 id="交叉函数（生孩子的过程）"><a href="#交叉函数（生孩子的过程）" class="headerlink" title="交叉函数（生孩子的过程）"></a>交叉函数（生孩子的过程）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crossover</span><span class="params">(self, father, people)</span>:</span></span><br><span class="line">        <span class="string">"""交叉配对函数。原理是，选择父亲的一部分城市排序，然后剩余的城市排序按照母亲的排序方式组合成孩子路线方案</span></span><br><span class="line"><span class="string">        Arguments:</span></span><br><span class="line"><span class="string">            father [city1,city2..] -- 所有的城市排序</span></span><br><span class="line"><span class="string">            people [[city1,city2..],[city4,city10..]] -- 所有的路线方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">            [city1,city2..] -- 生成的孩子路线方案或者父亲路线</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> np.random.rand() &lt; self.cross_rate:</span><br><span class="line">            <span class="comment"># 从people中选择另一个parent</span></span><br><span class="line">            mother_index = np.random.randint(<span class="number">0</span>, self.people_size, size=<span class="number">1</span>)</span><br><span class="line">            <span class="comment"># 选择交叉的DNA下标</span></span><br><span class="line">            cross_points = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, self.DNA_size, dtype=np.bool)</span><br><span class="line">            <span class="comment"># 选择father部分的城市（排序方式为father已有的排序）</span></span><br><span class="line">            father_city = father[cross_points]</span><br><span class="line">            <span class="comment"># 选择father没选上的城市（排序方式为mother以后的排序）</span></span><br><span class="line">            mother_city = people[mother_index, np.isin(</span><br><span class="line">                people[mother_index].ravel(), father_city, invert=<span class="literal">True</span>)]</span><br><span class="line">            child = np.concatenate((father_city, mother_city))</span><br><span class="line">            <span class="comment"># time.sleep(10)</span></span><br><span class="line">            <span class="comment"># father[:] = np.concatenate((father_city, mother_city))</span></span><br><span class="line">            <span class="comment"># return father</span></span><br><span class="line">            <span class="keyword">return</span> child</span><br><span class="line">        <span class="keyword">return</span> father</span><br></pre></td></tr></table></figure>
-<h4 id="变异函数"><a href="#变异函数" class="headerlink" title="变异函数"></a>变异函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mutate</span><span class="params">(self, child)</span>:</span></span><br><span class="line">       <span class="string">"""变异函数。每个城市都有几率产生变异。变异：随机与路线上的另外一个城市交换位置</span></span><br><span class="line"><span class="string">       Arguments:</span></span><br><span class="line"><span class="string">           child [int] -- 路线方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       Returns:</span></span><br><span class="line"><span class="string">           child [int] -- 路线方案</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       <span class="keyword">for</span> point_index <span class="keyword">in</span> range(self.DNA_size):</span><br><span class="line">           <span class="keyword">if</span> np.random.rand() &lt; self.mutation_rate:</span><br><span class="line">               swap_point_index = np.random.randint(<span class="number">0</span>, self.DNA_size)</span><br><span class="line">               swap_A, swap_B = child[point_index], child[swap_point_index]</span><br><span class="line">               child[point_index], child[swap_point_index] = swap_B, swap_A</span><br><span class="line">       <span class="keyword">return</span> child</span><br></pre></td></tr></table></figure>
-<p>完成了遗传变异的过程，生物种群就会增多，接下来就是适者生存，择优的过程。但是在做选择的时候，需要有一个选择标准来判断那个个体更适合。在解决TSP，那么每个个体的路线长短则作为判断依据（路线短的优胜）。这里就需要一个计算适应性的函数。</p>
-<h4 id="适应性计算函数"><a href="#适应性计算函数" class="headerlink" title="适应性计算函数"></a>适应性计算函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_fitness</span><span class="params">(self, xs_values, ys_values)</span>:</span></span><br><span class="line">       <span class="string">"""计算每条路线的距离distance，并且以距离的倒数为e的指数的值作为fitness</span></span><br><span class="line"><span class="string">       Arguments:</span></span><br><span class="line"><span class="string">           xs_values [[float]]-- 所有路线的x坐标列表</span></span><br><span class="line"><span class="string">           ys_values [[float]]-- 所有路线的y坐标列表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       Returns:</span></span><br><span class="line"><span class="string">           fitness [float] -- 每条路线的适应性</span></span><br><span class="line"><span class="string">           total_distance [float] -- 每条路线的距离</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       total_distance = np.empty((xs_values.shape[<span class="number">0</span>], ), dtype=np.float64)</span><br><span class="line">       <span class="keyword">for</span> index, (x_values, y_values) <span class="keyword">in</span> enumerate(zip(xs_values, ys_values)):</span><br><span class="line">           total_distance[index] = np.sum(</span><br><span class="line">               np.sqrt(np.square(np.diff(x_values)) + np.square(np.diff(y_values))))</span><br><span class="line">       fitness = np.exp(self.DNA_size * <span class="number">2</span> / total_distance)</span><br><span class="line">       <span class="comment"># 这里为什么要乘以self.DNA_size * 2，因为基数太小，fitness之间差距太小，在做select的时候就会每个概率几乎相等了，收敛太慢，放大后概率差就更凸显</span></span><br><span class="line">       <span class="comment"># fitness1 = np.exp(1 / total_distance)</span></span><br><span class="line">       <span class="comment"># print("???????", fitness, fitness1)</span></span><br><span class="line">       <span class="keyword">return</span> fitness, total_distance</span><br></pre></td></tr></table></figure>
-<h4 id="选择函数"><a href="#选择函数" class="headerlink" title="选择函数"></a>选择函数</h4><p>这个选择函数的思想是，从种群中选择新的种群，每个个体都可以被重复选择，但是适应性高的个体被重复选择的概率高，适应性低的个体，可能一次都选不上，replace=True表示可被重复选择，p=fitness / fitness.sum()表示每个个体的选择概率</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, fitness)</span>:</span></span><br><span class="line">        <span class="string">"""选择函数</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        index = np.random.choice(np.arange(</span><br><span class="line">            self.people_size), size=self.people_size, replace=<span class="literal">True</span>, p=fitness / fitness.sum())</span><br><span class="line">        <span class="keyword">return</span> self.people[index]</span><br></pre></td></tr></table></figure>
-<h4 id="进化函数"><a href="#进化函数" class="headerlink" title="进化函数"></a>进化函数</h4><p>当前种群的一次进化，先根据适应性选择新的种群，然后在对每个个体进行交叉遗传并对遗传的新个体产生变异</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evolve</span><span class="params">(self, fitness)</span>:</span></span><br><span class="line">    <span class="string">"""进化函数（一次进化）</span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">        fitness &#123;[type]&#125; -- [description]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    people = self.select(fitness)</span><br><span class="line">    people_copy = people.copy()</span><br><span class="line">    <span class="keyword">for</span> father <span class="keyword">in</span> people:</span><br><span class="line">        child = self.crossover(father, people_copy)</span><br><span class="line">        child = self.mutate(child)</span><br><span class="line">        <span class="comment"># father[:] = child</span></span><br><span class="line">        father = child</span><br><span class="line">    self.people = people</span><br></pre></td></tr></table></figure>
-<h4 id="整个求解的流程"><a href="#整个求解的流程" class="headerlink" title="整个求解的流程"></a>整个求解的流程</h4><p>首先初始化一个生物种群：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ga = GA(DNA_size=CITY_NUM, cross_rate=CROSS_RATE,</span><br><span class="line">        mutation_rate=MUTATION_RATE, people_size=POP_SIZE)  <span class="comment"># 初始化种群</span></span><br></pre></td></tr></table></figure>
-<p>初始化20个城市:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env = TSP(city_num=CITY_NUM)  <span class="comment"># 初始化20是个城市</span></span><br></pre></td></tr></table></figure>
-<p>然后根据定义的遗传代数来逐代进化</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> generation <span class="keyword">in</span> range(N_GENERATION):</span><br><span class="line">    <span class="comment"># 计算出所有个体的坐标</span></span><br><span class="line">    x_values, y_values = ga.translate_DNA(ga.people, env.city_position)</span><br><span class="line">    <span class="comment"># 计算出所有个体的适应性+路程</span></span><br><span class="line">    fitness, total_distance = ga.get_fitness(x_values, y_values)</span><br><span class="line">    <span class="comment"># 遗传演变</span></span><br><span class="line">    ga.evolve(fitness)</span><br><span class="line">    <span class="comment"># 找出适应性最高的个体</span></span><br><span class="line">    best_idx = np.argmax(fitness)</span><br><span class="line">    print(<span class="string">'Gen:'</span>, generation, <span class="string">'| best fit: %.2f'</span> % fitness[best_idx],)</span><br><span class="line">    env.ploting(x_values[best_idx], y_values[best_idx],</span><br><span class="line">                total_distance[best_idx])</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>完整代码传送门：</p>
-<p><a href="https://github.com/RoryXiang/MCL_dairy/blob/master/GeneticAlgorithm/shortest_path.py" target="_blank" rel="noopener">https://github.com/RoryXiang/MCL_dairy/blob/master/GeneticAlgorithm/shortest_path.py</a></p>
-</blockquote>
-<p>下一篇是蚂蚁算法来解决TSP</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
+<section class="post" itemscope itemprop="blogitem">
   
-  <span></span> <a href="/tags/机器学习/">机器学习</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2019/04/12/GeneticAlgorithm/#comments" class="ds-thread-count comments-count-link" data-thread-key="2019/04/12/GeneticAlgorithm/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
+    <a href="/2019/05/03/蚂蚁算法/" title="蚂蚁算法" itemprop="url">
+  
+    <h1 itemprop="name">蚂蚁算法</h1>
+    
+     
+           <p itemprop="description"></p>
+        
+    
+    <time datetime="2019-05-03T12:09:48.000Z" itemprop="datePublished">2019-05-03</time>
+  </a>
+</section>
 
 
-    </article>
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2019/04/12/GeneticAlgorithm/" title="GeneticAlgorithm(遗传算法)" itemprop="url">
+  
+    <h1 itemprop="name">GeneticAlgorithm(遗传算法)</h1>
+    
+     
+           <p itemprop="description">​    第一篇写遗传算法，一是因为我接触第一个算法，另外就是它的用途很广，很多方向都能用到。一般都用在解决：函数最值问题、TSP（旅行商问题）、背包问题等等。
+​    遗传算法完全的模拟生物的遗传过程，所以算法的核心也是可以用生物的遗传过程来理解：遗传和变异🧬，适者生存（选</p>
+        
+    
+    <time datetime="2019-04-12T13:31:21.000Z" itemprop="datePublished">2019-04-12</time>
+  </a>
+</section>
 
 
 
