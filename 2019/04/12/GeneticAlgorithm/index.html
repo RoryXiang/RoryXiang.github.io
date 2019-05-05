@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="乔巴先生">
 <meta property="og:description" content="​    第一篇写遗传算法，一是因为我接触第一个算法，另外就是它的用途很广，很多方向都能用到。一般都用在解决：函数最值问题、TSP（旅行商问题）、背包问题等等。 ​    遗传算法完全的模拟生物的遗传过程，所以算法的核心也是可以用生物的遗传过程来理解：遗传和变异🧬，适者生存（选择优胜者）。算法的难点也是在实际业务或者使用中，如何将实际问题转化成数学模型中的模型。 开始第一个demo（解决TSP问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-03T15:56:38.716Z">
+<meta property="og:updated_time" content="2019-05-05T10:24:10.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GeneticAlgorithm(遗传算法)">
 <meta name="twitter:description" content="​    第一篇写遗传算法，一是因为我接触第一个算法，另外就是它的用途很广，很多方向都能用到。一般都用在解决：函数最值问题、TSP（旅行商问题）、背包问题等等。 ​    遗传算法完全的模拟生物的遗传过程，所以算法的核心也是可以用生物的遗传过程来理解：遗传和变异🧬，适者生存（选择优胜者）。算法的难点也是在实际业务或者使用中，如何将实际问题转化成数学模型中的模型。 开始第一个demo（解决TSP问">
@@ -109,7 +109,7 @@
 		<p>​    第一篇写遗传算法，一是因为我接触第一个算法，另外就是它的用途很广，很多方向都能用到。一般都用在解决：函数最值问题、TSP（旅行商问题）、背包问题等等。</p>
 <p>​    遗传算法完全的模拟生物的遗传过程，所以算法的核心也是可以用生物的遗传过程来理解：遗传和变异🧬，适者生存（选择优胜者）。算法的难点也是在实际业务或者使用中，如何将实际问题转化成数学模型中的模型。</p>
 <h4 id="开始第一个demo（解决TSP问题，求最短路径）："><a href="#开始第一个demo（解决TSP问题，求最短路径）：" class="headerlink" title="开始第一个demo（解决TSP问题，求最短路径）："></a>开始第一个demo（解决TSP问题，求最短路径）：</h4><p>​    以20个城市举例，找出者20个城市的最短路径。</p>
-<p>​    遗传算法在解决这个问题的时候，核心是：遗传、变异函数，这里我们采用的是，这里我们采用的是一部分基因来自父亲，一部分来自母亲，例如，father = [1, 4, 5, 2, 3], motner = [2, 4, 3, 5, 1] 则孩子可能为 [1, 4, 3, 2, 5],前半部分基因来自父亲，后半部分来自母亲，顺序都需要保持父母的。变异呢，，姿势，随机更换任意两个位置的城市为[1, 4, 1,5, 2, 3], 5, 3换位置。</p>
+<p>​    遗传算法在解决这个问题的时候，核心是：遗传、变异函数，这里我们采用的是一部分基因来自父亲，一部分来自母亲，例如，father = [1, 4, 5, 2, 3], motner = [2, 4, 3, 5, 1] 则孩子可能为 [1, 4, 3, 2, 5],前半部分基因来自父亲，后半部分来自母亲，顺序都需要保持父母的。变异呢，则是，随机更换任意两个位置的城市为[1, 4, 1,5, 2, 3], 5, 3换位置。</p>
 <h4 id="交叉函数（生孩子的过程）"><a href="#交叉函数（生孩子的过程）" class="headerlink" title="交叉函数（生孩子的过程）"></a>交叉函数（生孩子的过程）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">crossover</span><span class="params">(self, father, people)</span>:</span></span><br><span class="line">        <span class="string">"""交叉配对函数。原理是，选择父亲的一部分城市排序，然后剩余的城市排序按照母亲的排序方式组合成孩子路线方案</span></span><br><span class="line"><span class="string">        Arguments:</span></span><br><span class="line"><span class="string">            father [city1,city2..] -- 所有的城市排序</span></span><br><span class="line"><span class="string">            people [[city1,city2..],[city4,city10..]] -- 所有的路线方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">            [city1,city2..] -- 生成的孩子路线方案或者父亲路线</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> np.random.rand() &lt; self.cross_rate:</span><br><span class="line">            <span class="comment"># 从people中选择另一个parent</span></span><br><span class="line">            mother_index = np.random.randint(<span class="number">0</span>, self.people_size, size=<span class="number">1</span>)</span><br><span class="line">            <span class="comment"># 选择交叉的DNA下标</span></span><br><span class="line">            cross_points = np.random.randint(<span class="number">0</span>, <span class="number">2</span>, self.DNA_size, dtype=np.bool)</span><br><span class="line">            <span class="comment"># 选择father部分的城市（排序方式为father已有的排序）</span></span><br><span class="line">            father_city = father[cross_points]</span><br><span class="line">            <span class="comment"># 选择father没选上的城市（排序方式为mother以后的排序）</span></span><br><span class="line">            mother_city = people[mother_index, np.isin(</span><br><span class="line">                people[mother_index].ravel(), father_city, invert=<span class="literal">True</span>)]</span><br><span class="line">            child = np.concatenate((father_city, mother_city))</span><br><span class="line">            <span class="comment"># time.sleep(10)</span></span><br><span class="line">            <span class="comment"># father[:] = np.concatenate((father_city, mother_city))</span></span><br><span class="line">            <span class="comment"># return father</span></span><br><span class="line">            <span class="keyword">return</span> child</span><br><span class="line">        <span class="keyword">return</span> father</span><br></pre></td></tr></table></figure>
 <h4 id="变异函数"><a href="#变异函数" class="headerlink" title="变异函数"></a>变异函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mutate</span><span class="params">(self, child)</span>:</span></span><br><span class="line">       <span class="string">"""变异函数。每个城市都有几率产生变异。变异：随机与路线上的另外一个城市交换位置</span></span><br><span class="line"><span class="string">       Arguments:</span></span><br><span class="line"><span class="string">           child [int] -- 路线方案</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       Returns:</span></span><br><span class="line"><span class="string">           child [int] -- 路线方案</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       <span class="keyword">for</span> point_index <span class="keyword">in</span> range(self.DNA_size):</span><br><span class="line">           <span class="keyword">if</span> np.random.rand() &lt; self.mutation_rate:</span><br><span class="line">               swap_point_index = np.random.randint(<span class="number">0</span>, self.DNA_size)</span><br><span class="line">               swap_A, swap_B = child[point_index], child[swap_point_index]</span><br><span class="line">               child[point_index], child[swap_point_index] = swap_B, swap_A</span><br><span class="line">       <span class="keyword">return</span> child</span><br></pre></td></tr></table></figure>
 <p>完成了遗传变异的过程，生物种群就会增多，接下来就是适者生存，择优的过程。但是在做选择的时候，需要有一个选择标准来判断那个个体更适合。在解决TSP，那么每个个体的路线长短则作为判断依据（路线短的优胜）。这里就需要一个计算适应性的函数。</p>
@@ -133,6 +133,11 @@
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python/">python</a>
+</div>
 
 
   <div class="article-tags">
@@ -160,10 +165,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev">
- <a href="/2019/05/03/蚂蚁算法/" title="蚂蚁算法">
+ <a href="/2019/05/03/AntAlgorithm/" title="AntAlgorithm（蚂蚁算法AG）">
   <strong>上一篇：</strong><br>
   <span>
-  蚂蚁算法</span>
+  AntAlgorithm（蚂蚁算法AG）</span>
 </a>
 </div>
 
@@ -202,6 +207,17 @@
 
 
   
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
 
   
 <div class="tagslist">
