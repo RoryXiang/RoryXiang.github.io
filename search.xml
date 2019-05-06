@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[AntAlgorithm（蚂蚁算法AG）]]></title>
-    <url>%2F2019%2F05%2F03%2FAntAlgorithm%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[AntAlgorithm(蚂蚁算法)]]></title>
+    <url>%2F2019%2F05%2F06%2F%E8%9A%82%E8%9A%81%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[​ 在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 核心思路​ 本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是，激素是有挥发性的，时间越久激素的浓度就会越低，被识别的概率越低。（这也是算法的硬核所在）。所以在算法中，每个蚂蚁没跑完一次路径所携带的信息素总量是一定的，路径越长，那么单位路径上的信息素就越少，被重复选择个概率就越小，而被淘汰。另外信息素在路上可以累加的，但是会随意间挥发，所有的这些影响因素满满的叠加，最终就可以选择出最短路径。 数学模型​ 第一个数学模型函数，下一个城市选择概率函数：$$P^{k}{ij} = \frac{[\tau(i,j)]^\alpha[\eta(i,j)]^\beta}{\sum{s\in{J_k}(i)}{[\tau(i,s)]^\alpha[\eta(i,s)]^\beta}}, j\in{allowed_k}$$]]></content>
       <categories>
         <category>python</category>
       </categories>

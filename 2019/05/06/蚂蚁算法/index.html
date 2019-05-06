@@ -4,22 +4,27 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>AntAlgorithm（蚂蚁算法AG） | 乔巴先生</title>
+    <title>AntAlgorithm(蚂蚁算法) | 乔巴先生</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="乔巴先生">
     
 
     
-    <meta name="keywords" content="机器学习">
+    <meta name="description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 核心思路​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AntAlgorithm（蚂蚁算法AG）">
-<meta property="og:url" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/03/AntAlgorithm/index.html">
+<meta property="og:title" content="AntAlgorithm(蚂蚁算法)">
+<meta property="og:url" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/index.html">
 <meta property="og:site_name" content="乔巴先生">
+<meta property="og:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 核心思路​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-04T03:15:23.286Z">
+<meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png">
+<meta property="og:updated_time" content="2019-05-06T03:53:21.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AntAlgorithm（蚂蚁算法AG）">
+<meta name="twitter:title" content="AntAlgorithm(蚂蚁算法)">
+<meta name="twitter:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 核心思路​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是">
+<meta name="twitter:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png">
 
     
     <link rel="alternative" href="/atom.xml" title="乔巴先生" type="application/atom+xml">
@@ -83,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/05/03/AntAlgorithm/" title="AntAlgorithm（蚂蚁算法AG）" itemprop="url">AntAlgorithm（蚂蚁算法AG）</a>
+      <a href="/2019/05/06/蚂蚁算法/" title="AntAlgorithm(蚂蚁算法)" itemprop="url">AntAlgorithm(蚂蚁算法)</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="乔巴先生" target="_blank" itemprop="author">乔巴先生</a>
 		
   </p><p class="article-time">
-    <time datetime="2019-05-03T12:09:48.000Z" itemprop="datePublished"> Published 2019-05-03</time>
+    <time datetime="2019-05-06T03:45:26.000Z" itemprop="datePublished"> Published 2019-05-06</time>
     
   </p>
 </header>
@@ -99,11 +104,14 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心思路"><span class="toc-number">1.</span> <span class="toc-text">核心思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数学模型"><span class="toc-number">2.</span> <span class="toc-text">数学模型</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<p>​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。</p>
+<h4 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h4><p>​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是，激素是有挥发性的，时间越久激素的浓度就会越低，被识别的概率越低。（这也是算法的硬核所在）。所以在算法中，每个蚂蚁没跑完一次路径所携带的信息素总量是一定的，路径越长，那么单位路径上的信息素就越少，被重复选择个概率就越小，而被淘汰。另外信息素在路上可以累加的，但是会随意间挥发，所有的这些影响因素满满的叠加，最终就可以选择出最短路径。</p>
+<h4 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h4><p>​        第一个数学模型函数，下一个城市选择概率函数：<br>$$<br>P^{k}<em>{ij} = \frac{[\tau(i,j)]^\alpha[\eta(i,j)]^\beta}{\sum</em>{s\in{J_k}(i)}{[\tau(i,s)]^\alpha[\eta(i,s)]^\beta}}, j\in{allowed_k}<br>$$<br><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png" alt="概率转移公式"></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -125,7 +133,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://roryxiang.github.io/RoryXiang.github.io/2019/05/03/AntAlgorithm/" data-title="AntAlgorithm（蚂蚁算法AG） | 乔巴先生" data-tsina="2119694685" class="share clearfix">
+	  <div data-url="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/" data-title="AntAlgorithm(蚂蚁算法) | 乔巴先生" data-tsina="2119694685" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -151,7 +159,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2019/05/03/AntAlgorithm/" data-title="AntAlgorithm（蚂蚁算法AG）" data-url="https://roryxiang.github.io/RoryXiang.github.io/2019/05/03/AntAlgorithm/"></div>
+	<div class="ds-thread" data-thread-key="2019/05/06/蚂蚁算法/" data-title="AntAlgorithm(蚂蚁算法)" data-url="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/"></div>
 </section>
 
 
@@ -163,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心思路"><span class="toc-number">1.</span> <span class="toc-text">核心思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数学模型"><span class="toc-number">2.</span> <span class="toc-text">数学模型</span></a></li></ol>
  
   </div>
 
