@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png">
-<meta property="og:updated_time" content="2019-05-06T06:27:15.678Z">
+<meta property="og:updated_time" content="2019-05-07T14:49:25.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AntAlgorithm(蚂蚁算法)">
 <meta name="twitter:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 ###核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路">
@@ -117,10 +117,9 @@
 <p>​        第一个数学模型函数，下一个城市选择概率函数：</p>
 <p><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png" alt="概率转移公式"></p>
 <p>这个数学公式的意思是，当前在地 i 个城市，选择下一个城市 j 的概率（j代表所有城市中非 i 的城市）。</p>
-<h4 id="分子："><a href="#分子：" class="headerlink" title="分子："></a>分子：</h4><p><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png" alt="信息素"></p>
-<p> 表示城市 i，j 之间的信息因子（所有蚂蚁在城市 i，j 之间留下的信息素总和）</p>
+<h4 id="分子："><a href="#分子：" class="headerlink" title="分子："></a>分子：<img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png" alt="信息素"></h4><p> 表示城市 i，j 之间的信息因素（所有蚂蚁在城市 i，j 之间留下的信息素总和）</p>
 <p><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png" alt="距离因子"></p>
-<p>表示城市 i，j 之间的距离距离因子（默认为距离的倒数）</p>
+<p>表示城市 i，j 之间的距离距离因素（默认为距离的倒数）</p>
 <h4 id="分母："><a href="#分母：" class="headerlink" title="分母："></a>分母：</h4><p>表示当前城市 i 到所有可以到达的城市的 信息因素与距离因素乘机的加和。</p>
   
 	</div>
