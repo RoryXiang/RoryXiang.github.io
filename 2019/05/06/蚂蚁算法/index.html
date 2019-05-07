@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png">
-<meta property="og:updated_time" content="2019-05-07T14:54:50.867Z">
+<meta property="og:updated_time" content="2019-05-07T14:59:10.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AntAlgorithm(蚂蚁算法)">
 <meta name="twitter:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
@@ -114,13 +114,12 @@
 <p>#核心思路</p>
 <p>​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是，激素是有挥发性的，时间越久激素的浓度就会越低，被识别的概率越低。（这也是算法的硬核所在）。所以在算法中，每个蚂蚁没跑完一次路径所携带的信息素总量是一定的，路径越长，那么单位路径上的信息素就越少，被重复选择个概率就越小，而被淘汰。另外信息素在路上可以累加的，但是会随意间挥发，所有的这些影响因素满满的叠加，最终就可以选择出最短路径。</p>
 <p>#数学模型</p>
-<p>​        第一个数学模型函数，下一个城市选择概率函数：</p>
-<p><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png" alt="概率转移公式"></p>
+<p>​        第一个数学模型函数，下一个城市选择概率函数：<img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png" alt="probablity"></p>
 <p>这个数学公式的意思是，当前在地 i 个城市，选择下一个城市 j 的概率（j代表所有城市中非 i 的城市）。</p>
 <p>##分子：</p>
-<p><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png" alt="信息素"></p>
+<p>前半部分：<img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png" alt="infos"></p>
 <p> 表示城市 i，j 之间的信息因素（所有蚂蚁在城市 i，j 之间留下的信息素总和）</p>
-<p><img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png" alt="距离因子"></p>
+<p>后半部分：<img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png" alt="distance@2x"></p>
 <p>表示城市 i，j 之间的距离距离因素（默认为距离的倒数）</p>
 <p>##分母：</p>
 <p>表示当前城市 i 到所有可以到达的城市的 信息因素与距离因素乘机的加和。</p>
