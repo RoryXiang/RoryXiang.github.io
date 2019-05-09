@@ -11,23 +11,23 @@
     
 
     
-    <meta name="description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
+    <meta name="description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，或者再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AntAlgorithm(蚂蚁算法)">
 <meta property="og:url" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/index.html">
 <meta property="og:site_name" content="乔巴先生">
-<meta property="og:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
+<meta property="og:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，或者再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/infos.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/two.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/everinfo.png">
-<meta property="og:updated_time" content="2019-05-08T16:48:14.858Z">
+<meta property="og:updated_time" content="2019-05-09T15:40:24.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AntAlgorithm(蚂蚁算法)">
-<meta name="twitter:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
+<meta name="twitter:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，或者再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
 <meta name="twitter:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png">
 
     
@@ -112,9 +112,9 @@
 		
 		</div>
 		
-		<p>​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，活着再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。</p>
+		<p>​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，或者再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。</p>
 <p>#核心思路</p>
-<p>​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，但是，激素是有挥发性的，时间越久激素的浓度就会越低，被识别的概率越低。（这也是算法的硬核所在）。所以在算法中，每个蚂蚁没跑完一次路径所携带的信息素总量是一定的，路径越长，那么单位路径上的信息素就越少，被重复选择个概率就越小，而被淘汰。另外信息素在路上可以累加的，但是会随意间挥发，所有的这些影响因素满满的叠加，最终就可以选择出最短路径。</p>
+<p>​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，激素是有挥发性的，时间越久激素的浓度就会越低，被识别的概率越低。（这也是算法的硬核所在）。所以在算法中，每个蚂蚁没跑完一次路径所携带的信息素总量是一定的，路径越长，那么单位路径上的信息素就越少，被重复选择个概率就越小，而被淘汰。另外信息素在路上可以累加的，但是会随意间挥发，所有的这些影响因素慢慢的叠加，最终就可以选择出最短路径。</p>
 <p>#数学模型</p>
 <p>​        一）、第一个数学模型函数，下一个城市选择概率函数：<img src="/RoryXiang.github.io/2019/05/06/蚂蚁算法/probablity.png" alt="probablity"></p>
 <p>这个数学公式的意思是，当前在地 i 个城市，选择下一个城市 j 的概率（j代表所有城市中非 i 的城市）。</p>
@@ -139,6 +139,8 @@
 <p>因为Q是定值，所以当蚂蚁的路线总路程L越短的时候释放的信息素δτ(ij)就会越大，对于信息素浓度来说，当t+1时刻，就会有更大的∇τ(i,j)，和更大的信息浓度τ(i,j)，所以在t+1时刻，被选择的概率就会更大，以这样一次一次叠加，最终选择出来最短的路径。</p>
 <h2 id="整个算法的核心流程"><a href="#整个算法的核心流程" class="headerlink" title="整个算法的核心流程"></a>整个算法的核心流程</h2><p>初始化蚂蚁种群。开始跑第一个循环（第一个循环的时候，路径上没有历史信息素，所以第一轮的时候每只蚂蚁都是随机选择下一个城市），第一次循环完成后，需要计算每只蚂蚁的总路程、计算每只蚂蚁的信息释放量，更新所有城市之间的信息浓度；接着跑第二轮，第二轮往后，每次选择下一个城市的概率就会产生差异，然后重复第一轮所需要做的所有更新。</p>
 <h2 id="完成代码传送门（github）："><a href="#完成代码传送门（github）：" class="headerlink" title="完成代码传送门（github）："></a>完成代码传送门（github）：</h2><p><a href="https://github.com/RoryXiang/MCL_dairy/blob/master/AG/AGTSP.py" target="_blank" rel="noopener">https://github.com/RoryXiang/MCL_dairy/blob/master/AG/AGTSP.py</a></p>
+<p>最后附上一篇关于蚂蚁算法中各个参数的影响的论文：</p>
+<p>链接:<a href="https://pan.baidu.com/s/1UWv0Q3oboc22R8B5VRvmSw" target="_blank" rel="noopener">https://pan.baidu.com/s/1UWv0Q3oboc22R8B5VRvmSw</a>  密码:lnp8</p>
 <p>下一篇准备花点时间看看所有的聚类算法然后分享一下。</p>
   
 	</div>
