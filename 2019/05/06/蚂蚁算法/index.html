@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/distance@2x.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/two.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/06/蚂蚁算法/everinfo.png">
-<meta property="og:updated_time" content="2019-05-14T13:46:33.687Z">
+<meta property="og:updated_time" content="2019-07-15T16:52:47.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AntAlgorithm(蚁群算法)">
 <meta name="twitter:description" content="​        在我完全搞明白蚂蚁算法之前，我也在网上找了好多资料，每个都看完，都有一个特点，就是，不管谁的blog或者论文，都是会放上三个数学公式，或者再加上一段对应数学公式的代码。对于非专科生来说非常头疼。这里我按照我的理解通俗的分享一下。 #核心思路 ​        本算法的原理是模仿蚂蚁在自然界的行为，但是又有点不同。蚂蚁在行径的路途中会释放激素，以便于自己活着其他蚂蚁找到走过的路径，">
@@ -108,7 +108,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整个算法的核心流程"><span class="toc-number">1.</span> <span class="toc-text">整个算法的核心流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成代码传送门（github）："><span class="toc-number">2.</span> <span class="toc-text">完成代码传送门（github）：</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整个算法的核心流程"><span class="toc-number">1.</span> <span class="toc-text">整个算法的核心流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码传送门（github）："><span class="toc-number">2.</span> <span class="toc-text">完整代码传送门（github）：</span></a></li></ol>
 		
 		</div>
 		
@@ -138,7 +138,7 @@
 <p>Q是常量参数（一般设置为1、10、100等），表示每只蚂蚁一次循环释放的信息总量；L表示每只蚂蚁当次完整路线的总距离。</p>
 <p>因为Q是定值，所以当蚂蚁的路线总路程L越短的时候释放的信息素δτ(ij)就会越大，对于信息素浓度来说，当t+1时刻，就会有更大的∇τ(i,j)，和更大的信息浓度τ(i,j)，所以在t+1时刻，被选择的概率就会更大，以这样一次一次叠加，最终选择出来最短的路径。</p>
 <h2 id="整个算法的核心流程"><a href="#整个算法的核心流程" class="headerlink" title="整个算法的核心流程"></a>整个算法的核心流程</h2><p>初始化蚂蚁种群。开始跑第一个循环（第一个循环的时候，路径上没有历史信息素，所以第一轮的时候每只蚂蚁都是随机选择下一个城市），第一次循环完成后，需要计算每只蚂蚁的总路程、计算每只蚂蚁的信息释放量，更新所有城市之间的信息浓度；接着跑第二轮，第二轮往后，每次选择下一个城市的概率就会产生差异，然后重复第一轮所需要做的所有更新。</p>
-<h2 id="完成代码传送门（github）："><a href="#完成代码传送门（github）：" class="headerlink" title="完成代码传送门（github）："></a>完成代码传送门（github）：</h2><p><a href="https://github.com/RoryXiang/MCL_dairy/blob/master/AG/AGTSP.py" target="_blank" rel="noopener">https://github.com/RoryXiang/MCL_dairy/blob/master/AG/AGTSP.py</a></p>
+<h2 id="完整代码传送门（github）："><a href="#完整代码传送门（github）：" class="headerlink" title="完整代码传送门（github）："></a>完整代码传送门（github）：</h2><p><a href="https://github.com/RoryXiang/MCL_dairy/blob/master/AG/AGTSP.py" target="_blank" rel="noopener">https://github.com/RoryXiang/MCL_dairy/blob/master/AG/AGTSP.py</a></p>
 <p>最后附上一篇关于蚂蚁算法中各个参数的影响的论文：</p>
 <p>链接:<a href="https://pan.baidu.com/s/1UWv0Q3oboc22R8B5VRvmSw" target="_blank" rel="noopener">https://pan.baidu.com/s/1UWv0Q3oboc22R8B5VRvmSw</a>  密码:lnp8</p>
 <p>下一篇准备花点时间看看所有的聚类算法然后分享一下。</p>
@@ -210,7 +210,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整个算法的核心流程"><span class="toc-number">1.</span> <span class="toc-text">整个算法的核心流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成代码传送门（github）："><span class="toc-number">2.</span> <span class="toc-text">完成代码传送门（github）：</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#整个算法的核心流程"><span class="toc-number">1.</span> <span class="toc-text">整个算法的核心流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码传送门（github）："><span class="toc-number">2.</span> <span class="toc-text">完整代码传送门（github）：</span></a></li></ol>
  
   </div>
 

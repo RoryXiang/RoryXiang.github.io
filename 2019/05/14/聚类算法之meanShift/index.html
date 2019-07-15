@@ -11,20 +11,25 @@
     
 
     
-    <meta name="description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题. MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以">
+    <meta name="description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聚类算法之meanShift">
 <meta property="og:url" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/index.html">
 <meta property="og:site_name" content="乔巴先生">
-<meta property="og:description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题. MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以">
+<meta property="og:description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/NewCenter.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/vector.png">
-<meta property="og:updated_time" content="2019-07-13T16:27:11.050Z">
+<meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/new_mean.png">
+<meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/new_center.png">
+<meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/gaosi.png">
+<meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/gaosip.png">
+<meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/end.png">
+<meta property="og:updated_time" content="2019-07-15T16:55:56.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聚类算法之meanShift">
-<meta name="twitter:description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题. MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以">
+<meta name="twitter:description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂">
 <meta name="twitter:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/NewCenter.png">
 
     
@@ -105,19 +110,36 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法核心思想"><span class="toc-number">2.</span> <span class="toc-text">算法核心思想</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法核心思想"><span class="toc-number">2.</span> <span class="toc-text">算法核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法流程"><span class="toc-number">3.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完整代码传送门（github）："><span class="toc-number">4.</span> <span class="toc-text">完整代码传送门（github）：</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><pre><code>在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.
-MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂移自动聚类，那么起始族心也不需要提前输入，可以拿数据中所有的元素作为起始族心（只是会增加过量计算，这篇中我会做数据粗粒化处理，来减少过量计算）
-</code></pre><h3 id="算法核心思想"><a href="#算法核心思想" class="headerlink" title="算法核心思想"></a>算法核心思想</h3><pre><code>对于所有起始族心，计算其规定球内所有元素的均值作为下一个族心，当前族心到新的族心的向量叫做偏移向量。
-新的均值族心计算函数：
-</code></pre><p>​    <img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/NewCenter.png" alt="新的均值中心"></p>
-<pre><code>上式默认为球内每个元素权重一样。
-那么从t时刻到t+1时刻均值中心的偏移向量为：
-</code></pre><p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/vector.png" alt="偏移向量"></p>
-<p>而在MeanShift聚类过程中为了加快收敛，引入了和函数</p>
+		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.<br>MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂移自动聚类，那么起始族心也不需要提前输入，可以拿数据中所有的元素作为起始族心（只是会增加过量计算，这篇中我会做数据粗粒化处理，来减少过量计算）</p>
+<h3 id="算法核心思想"><a href="#算法核心思想" class="headerlink" title="算法核心思想"></a>算法核心思想</h3><p>对于所有起始族心，计算其规定球内所有元素的均值作为下一个族心，当前族心到新的族心的向量叫做偏移向量。<br>新的均值族心计算函数：</p>
+<p>​    <img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/NewCenter.png" alt="新的均值中心"></p>
+<p>上式默认为球内每个元素权重一样。<br>那么从t时刻到t+1时刻均值中心的偏移向量为：</p>
+<p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/vector.png" alt="偏移向量"></p>
+<p>而在MeanShift聚类过程中为了加快收敛，引入了核函数。相当于在给当前球内所有点加上一个相对球心的高斯权重（也可以加入其他和函数），偏移向量变成如下：</p>
+<p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/new_mean.png" alt="加入和函数的偏移向量"></p>
+<p>至于 为什么加入高斯核函数后能够实现加速收敛，推导过程：<a href="https://www.cnblogs.com/liqizhou/archive/2012/05/12/2497220.html，可以参考这篇文章，详细讲解了推导过程。" target="_blank" rel="noopener">https://www.cnblogs.com/liqizhou/archive/2012/05/12/2497220.html，可以参考这篇文章，详细讲解了推导过程。</a></p>
+<p>通过加入核函数的偏移向量，可以计算出新的球心：</p>
+<p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/new_center.png" alt="加入高斯核后的球心"></p>
+<p>g(x)为高斯函数：h表述球半径（带宽）</p>
+<p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/gaosi.png" alt="高斯函数"></p>
+<p>高斯函数曲线：</p>
+<p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/gaosip.png" alt="高斯曲线"></p>
+<p>从高斯曲线可以看出：离当前球心越近的点的权重越大。</p>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p>1、以所有点作为起始点（可以根据实际情况稀释起始点）；</p>
+<p>2、找出离center距离在bandwidth之内的所有点，记做集合M，认为这些点属于簇c。同时，统计属于蔟c的点的个数，这个参数将用于最后步骤的分类</p>
+<p>3、然后计算当前center内以bandwidth为半径所有点的新的newcenter。</p>
+<p>4、偏移向量为shift = newcenter - center。 移动距离是||shift||。</p>
+<p>5、重复步骤2、3、4，直到shift的大小很小（就是迭代到收敛），记住此时的newcenter。</p>
+<p>6、如果收敛时当前簇c的center与其它已经存在的簇c2中心的距离小于阈值，那么c2和c只能留下一个，留下以bandwidth为半径，球内点多的center。</p>
+<p>6、重复1、2、3、4、5直到所有的点都被标记访问。</p>
+<p>7、分类：根据每个类，对每个点的访问频率，取访问频率最大的那个类，作为当前点集的所属类。</p>
+<p>最后效果图：</p>
+<p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/end.png" alt="效果图"></p>
+<h3 id="完整代码传送门（github）："><a href="#完整代码传送门（github）：" class="headerlink" title="完整代码传送门（github）："></a>完整代码传送门（github）：</h3><p><a href="https://github.com/RoryXiang/MCL_dairy/blob/master/Clustering/MeanShift.py" target="_blank" rel="noopener">https://github.com/RoryXiang/MCL_dairy/blob/master/Clustering/MeanShift.py</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -178,7 +200,7 @@ MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法核心思想"><span class="toc-number">2.</span> <span class="toc-text">算法核心思想</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法核心思想"><span class="toc-number">2.</span> <span class="toc-text">算法核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法流程"><span class="toc-number">3.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完整代码传送门（github）："><span class="toc-number">4.</span> <span class="toc-text">完整代码传送门（github）：</span></a></li></ol>
  
   </div>
 
