@@ -12,7 +12,7 @@
 
     
     <meta name="description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂">
-<meta name="keywords" content="机器学习，聚类">
+<meta name="keywords" content="机器学习 聚类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聚类算法之meanShift">
 <meta property="og:url" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/index.html">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/gaosi.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/gaosip.png">
 <meta property="og:image" content="https://roryxiang.github.io/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/end.png">
-<meta property="og:updated_time" content="2019-07-15T17:03:12.498Z">
+<meta property="og:updated_time" content="2019-07-17T00:54:00.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聚类算法之meanShift">
 <meta name="twitter:description" content="前言在开始Meanshift之前需要先弄懂K-means，因为K-means的缺点（需要事先设置族的数量K，和起始族中心），可是大多时候，人工并不能完美的设置K和起始中心，就会导致，本来可以聚成5类的，结果只聚成4类等一系列问题。而MeanShift（均值漂移）解决了这些问题.MeanShift算是对K-means的一种改进。首先不需要事先输入K，而是根据族心漂移，自动聚集出K类；另外，基于可以漂">
@@ -136,7 +136,7 @@
 <p>5、重复步骤2、3、4，直到shift的大小很小（就是迭代到收敛），记住此时的newcenter。</p>
 <p>6、如果收敛时当前簇c的center与其它已经存在的簇c2中心的距离小于阈值，那么c2和c只能留下一个，留下以bandwidth为半径，球内点多的center。</p>
 <p>6、重复1、2、3、4、5直到所有的点都被标记访问。</p>
-<p>7、分类：根据每个类，对每个点的访问频率，取访问频率最大的那个类，作为当前点集的所属类。</p>
+<p>7、分类：根据每个蔟，对每个点的计算距离，取距离最近的那个簇心，作为当前点集的所属蔟。</p>
 <p>最后效果图：</p>
 <p><img src="/RoryXiang.github.io/2019/05/14/聚类算法之meanShift/end.png" alt="效果图"></p>
 <h3 id="完整代码传送门（github）："><a href="#完整代码传送门（github）：" class="headerlink" title="完整代码传送门（github）："></a>完整代码传送门（github）：</h3><p><a href="https://github.com/RoryXiang/MCL_dairy/blob/master/Clustering/MeanShift.py" target="_blank" rel="noopener">https://github.com/RoryXiang/MCL_dairy/blob/master/Clustering/MeanShift.py</a></p>
@@ -153,7 +153,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/机器学习，聚类/">机器学习，聚类</a>
+  <span></span> <a href="/tags/机器学习-聚类/">机器学习 聚类</a>
   </div>
 
 </div>
@@ -240,7 +240,7 @@
 			
 		
 			
-				<li><a href="/tags/机器学习，聚类/" title="机器学习，聚类">机器学习，聚类<sup>1</sup></a></li>
+				<li><a href="/tags/机器学习-聚类/" title="机器学习 聚类">机器学习 聚类<sup>1</sup></a></li>
 			
 		
 		</ul>
